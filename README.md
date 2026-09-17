@@ -1,4 +1,4 @@
-projeto-qualidade
+# projeto-qualidade
 
 O objetivo desse projeto é criar uma base para aprender as bibliotecas em Python e entender como funciona a automação de tabelas em Python, porque eu trabalho com muitos dados, apesar de trabalhar com a área da qualidade, estudo programação, e tenho experiencia em Excel e Power Bi, também com KPI e indicadores, então quero resolver gargalos e agilizar o povoamento de dados nas tabelas que eu uso,  aprendendo essas automações tanto para povoar as tabelas quanto para leitura em Power BI vai ajudar muito, ainda tenho muito para aprender e entender sobre dados e automação, mas estou no caminho para evoluir.
 ===
@@ -41,7 +41,7 @@ O objetivo desse projeto é criar uma base para aprender as bibliotecas em Pytho
 
 # 
 
-1. # Instale as dependências:
+# 1\. # Instale as dependências:
 
 # pip install pandas openpyxl customtkinter
 
