@@ -14,23 +14,23 @@ A **Fase 2** foi implementado o banco de dados, e as interfaces para povoamento 
 
 A **Fase 3** ainda está em andamento, mas logo atualizo.
 
-**Linguagem:** Python
-**Bibliotecas:** Pandas, Openpyxl, CustomTkinter
-**Banco de dados:** SQLite3
-**Ferramentas:** Excel, Power BI
+**Linguagem:** Python\
+**Bibliotecas:** Pandas, Openpyxl, CustomTkinter\
+**Banco de dados:** SQLite3\
+**Ferramentas:** Excel, Power BI\
 
 ## Como rodar
 
-- 1. Instale as dependências:
+- 1\. Instale as dependências:
 pip install pandas openpyxl customtkinter
 
-- 2. Execute a migração inicial (apenas uma vez):
+- 2\. Execute a migração inicial (apenas uma vez):
 python fase2\_sql/migrar\_dados.py
 
- - 3. Para cadastrar registros:
+- 3\. Para cadastrar registros:
 python fase2\_sql/interface.py
 python fase2\_sql/interface\_reclamacao.py
 
-- 4. Para gerar o relatório semanal:
+- 4\. Para gerar o relatório semanal:
 python fase1\_excel/relatório\_semanal.py
 
