@@ -41,39 +41,55 @@ campo_satisfacao = ctk.CTkEntry(janela, placeholder_text="Satisfação", width=3
 campo_satisfacao.pack(pady=5)
 
 def salvar_nc():
+
+    if campo_id.get() == "":
+        mensagem.configure(text="O campo ID está em branco!")
+        return
+    elif not campo_id.get().startswith("REC-"):
+        mensagem.configure(text="ID inválido! Use o formato REC-XXXX")
+        return
+
     conexao = sqlite3.connect("qualidade.db")
     cursor = conexao.cursor()
 
-    cursor.execute("""
-    INSERT INTO reclamacoes_clientes
-    (id, data_abertura, cliente, tipo, descricao, responsavel, status, data_encerramento, satisfacao)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """,(
-        campo_id.get(),
-        campo_data_abertura.get(),
-        campo_cliente.get(),
-        campo_tipo.get(),
-        campo_descricao.get(),
-        campo_responsavel.get(),
-        campo_status.get(),
-        None,
-        None
-    ))
+    try:
+        cursor.execute("""
+        INSERT INTO reclamacoes_clientes
+        (id, data_abertura, cliente, tipo, descricao, responsavel, status, data_encerramento, satisfacao)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,(
+            campo_id.get(),
+            campo_data_abertura.get(),
+            campo_cliente.get(),
+            campo_tipo.get(),
+            campo_descricao.get(),
+            campo_responsavel.get(),
+            campo_status.get(),
+            None,
+            None
+        ))
 
-    conexao.commit()
-    conexao.close()
+        conexao.commit()
+        conexao.close()
 
-    campo_id.delete(0, "end"),
-    campo_data_abertura.delete(0, "end"),
-    campo_cliente.delete(0, "end"),
-    campo_tipo.delete(0, "end"),
-    campo_descricao.delete(0, "end"),
-    campo_responsavel.delete(0, "end"),
-    campo_status.set("Aberta")
-    campo_data_encerramento.delete(0, "end")
-    campo_satisfacao.delete(0, "end")
+        campo_id.delete(0, "end"),
+        campo_data_abertura.delete(0, "end"),
+        campo_cliente.delete(0, "end"),
+        campo_tipo.delete(0, "end"),
+        campo_descricao.delete(0, "end"),
+        campo_responsavel.delete(0, "end"),
+        campo_status.set("Aberta")
+        campo_data_encerramento.delete(0, "end")
+        campo_satisfacao.delete(0, "end")
 
-    mensagem.configure (text="Registro salvo com sucesso!")
+        mensagem.configure (text="Registro salvo com sucesso!")
+
+    except sqlite3.DatabaseError as erro:
+        conexao.rollback()
+        mensagem.configure(text=f"Erro no banco de dados {erro}")
+    except Exception as e:
+        conexao.rollback()
+        mensagem.configure(text=f"Falha ao salvar no banco de dados {e}")
 
 mensagem = ctk.CTkLabel(janela, text="")
 mensagem.pack(pady=5)
